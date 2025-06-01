@@ -1,0 +1,11 @@
+When you'd like to add new feature:
+1. git checkout -b feature/xxx-xxxxxxx-xxx
+2. when done: [step-1] git add . [step-2] commit -m="Describe the new feature"
+3. git push -u origin feature/xxx-xxxxxxx-xxx
+4. Go to github
+5. Create pull request from feature/xxx-xxxxxxx-xxx -> main (add a clear title)
+6. Merge:
+- git checkout main
+- git pull origin main
+- git merge feature/xxx-xxxxxxx-xxx
+- git push origin main

@@ -67,6 +67,12 @@ export default function ErrorPage({ searchParams, params }) {
         </strong>
       )}
 
+      {type === "invalid_signup_fields" && (
+        <strong>
+          Unfortunately you entered incorrect signup fields. Note that you have to enter a valid email belongs to your organization and a valid strong password
+        </strong>
+      )}
+
       {!knownErrors.includes(type) && (
         <strong>
           Something went wrong. Please try again or contact support.
