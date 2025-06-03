@@ -7,12 +7,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ssl": "concurrently --kill-others 'npx next dev -p 3001' 'npx local-ssl-proxy --source 3000 --target 3001'"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.43.5",
     "@tabler/icons-react": "^2.44.0",
+    "concurrently": "^9.1.2",
     "eslint": "8.48.0",
     "eslint-config-next": "^14.2.4",
     "next": "^14.2.29",

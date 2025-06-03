@@ -4,6 +4,7 @@ import { FORM_TYPES } from "./formTypes";
 import { notFound } from "next/navigation";
 
 export default async function LoginPage({ searchParams, params }) {
+
   const tenant = params.tenant;
   const supabaseAdmin = getSupabaseAdminClient();
   const { data, error } = await supabaseAdmin
@@ -17,7 +18,7 @@ export default async function LoginPage({ searchParams, params }) {
     return notFound();
   }
 
-  const { name: tenantName } = data;
+  const { name: tenantName, domain: tenantDomain } = data;
 
   const wantsMagicLink = searchParams.magicLink === "yes";
   const wantsPasswordRecovery = searchParams.passwordRecovery === "yes";
@@ -29,5 +30,6 @@ export default async function LoginPage({ searchParams, params }) {
     formType = FORM_TYPES.PASSWORD_RECOVERY;
   }
 
-  return <Login formType={formType} tenant={tenant} tenantName={tenantName} />;
+  // console.log({tenant,tenantName, tenantDomain})
+  return <Login formType={formType} tenant={tenant} tenantName={tenantName} tenantDomain={tenantDomain} />;
 }
