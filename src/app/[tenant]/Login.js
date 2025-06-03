@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { FORM_TYPES } from "./formTypes";
 import { urlPath } from "@/utils/url-helpers";
 
-export const Login = ({ formType = "pw-login", tenant, tenantName }) => {
+export const Login = ({ formType = "pw-login", tenant, tenantName, tenantDomain }) => {
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
   const supabase = getSupabaseBrowserClient();
@@ -102,6 +102,28 @@ export const Login = ({ formType = "pw-login", tenant, tenantName }) => {
           {isPasswordRecovery && "Request new password"}
           {isMagicLinkLogin && "Sign in with Magic Link"}
         </button>
+
+<button
+  type="button"
+  onClick={() => {
+
+supabase.auth.signInWithOAuth({
+  provider: "google",
+  options: {
+    redirectTo: window.location.origin + "/auth/verify-oauth",
+    queryParams: {
+     access_type: "offline",
+     prompt: "consent",
+     hd: tenantDomain,
+    },
+  },
+});    
+
+  }}
+>
+  Sign in with Google
+</button>
+
 
         <div
           style={{
